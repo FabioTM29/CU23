@@ -1,6 +1,10 @@
-import React from 'react';
 
-function FeedPost({ author, text }) {
+interface FeedPostProps {
+  author: string;
+  text: string;
+}
+
+function FeedPost({ author, text }: FeedPostProps) {
   return (
     <div className="post">
       <p>Autor: {author}</p>
@@ -8,6 +12,5 @@ function FeedPost({ author, text }) {
     </div>
   );
 }
-
 
 export default FeedPost;
