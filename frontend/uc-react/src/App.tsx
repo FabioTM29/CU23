@@ -1,44 +1,18 @@
-import { useState, useEffect } from 'react';
-import FeedPost from './FeedPost';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ShowPost from './Pages/ShowPost/ShowPost';
+import ValidatePost from './Pages/ValidatePost/ValidatePost';
 
-interface Post {
-  id: number;
-  author: string;
-  text: string;
-}
-
-function App() {
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-	fetch('https://api')
-	  .then(async (response) => await response.json())
-	  .then((data: Post[]) => {
-		setPosts(data);
-	  })
-	  .catch((error) => {
-		console.error('Error al obtener publicaciones:', error);
-	  });
-  }, []);
-  
-
-
-  return (
-    <div className="App">
-      <h1>Feed de Publicaciones</h1>
-      <PostList posts={posts} />
-    </div>
-  );
-}
-
-function PostList({ posts }: { posts: Post[] }) {
-  return (
-    <div className="post-list">
-      {posts.map((post) => (
-        <FeedPost key={post.id} author={post.author} text={post.text} />
-      ))}
-    </div>
-  );
-}
-
+const App = () => {
+	// posts={[]} = valor inicial
+	return (
+		<>
+			<BrowserRouter>
+				<Routes>
+					<Route path='/showPost' element={<ShowPost posts={[]} />}></Route>
+					<Route path='/validatePost' element={<ValidatePost />}></Route>
+				</Routes>
+			</BrowserRouter>
+		</>
+	);
+};
 export default App;
