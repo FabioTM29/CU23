@@ -3,12 +3,11 @@ import ShowPost from './Pages/ShowPost/ShowPost';
 import ValidatePost from './Pages/ValidatePost/ValidatePost';
 
 const App = () => {
-	// posts={[]} = valor inicial
 	return (
 		<>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/showPost' element={<ShowPost posts={[]} />}></Route>
+					<Route path='/showPost' element={<ShowPost />}></Route>
 					<Route path='/validatePost' element={<ValidatePost />}></Route>
 				</Routes>
 			</BrowserRouter>

@@ -9,6 +9,12 @@ import { doGet } from "./http.services";
  
  }
 
+ export const getValidatePosts = async () => {
+   const response = await doGet<PostListResponse>('/validatePost');
+   return response;
+
+}
+
 
 
 
