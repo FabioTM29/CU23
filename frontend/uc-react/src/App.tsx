@@ -7,8 +7,8 @@ const App = () => {
 		<>
 			<BrowserRouter>
 				<Routes>
-					<Route path='/showPost' element={<ShowPost />}></Route>
-					<Route path='/validatePost' element={<ValidatePost />}></Route>
+					<Route path='/showPostAccepted' element={<ShowPost />}></Route>
+					<Route path='/showPostInReview' element={<ValidatePost />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</>

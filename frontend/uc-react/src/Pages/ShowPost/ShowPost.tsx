@@ -11,8 +11,7 @@ const ShowPost = () => {
 				const response = await getPosts();
 				setPosts(response);
 			} catch (error) {
-				// Manejar errores aquí
-				console.error('Error al obtener los datos de los posts:', error);
+				console.error('Error al obtener la lista de posts:', error);
 			}
 		};
 

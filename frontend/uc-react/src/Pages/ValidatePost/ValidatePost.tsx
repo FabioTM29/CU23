@@ -11,6 +11,7 @@ const ValidatePost: React.FC = () => {
 	const handleAccept = () => {
 		if (selectedPost != null) {
 			setSelectedPost({ ...selectedPost, status: PostStatus.ACCEPTED });
+			// put : actualizar el PostStatus de ese post del lado del backend
 		}
 	};
 
@@ -26,7 +27,7 @@ const ValidatePost: React.FC = () => {
 				const response = await getValidatePosts();
 				setPosts(response);
 			} catch (error) {
-				console.error('Error al obtener los datos de los posts:', error);
+				console.error('Error al obtener la lista de posts', error);
 			}
 		};
 
