@@ -3,23 +3,28 @@ import type React from 'react';
 import { useEffect, useState } from 'react';
 import PostDetail from './PostDetail';
 import { getValidatePosts } from '../../services/user.services';
+import { doPut } from '../../services/http.services';
 
 const ValidatePost: React.FC = () => {
 	const [posts, setPosts] = useState<Post[] | null>(null);
 	const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
-	const handleAccept = () => {
+	const handleAccept = async () => {
 		if (selectedPost != null) {
-			setSelectedPost({ ...selectedPost, status: PostStatus.ACCEPTED });
-			// put : actualizar el PostStatus de ese post del lado del backend
+		  setSelectedPost({ ...selectedPost, postStatus: PostStatus.ACCEPTED });
+		  await doPut(selectedPost.postStatus, selectedPost.id);
+		  setSelectedPost(null);
 		}
-	};
-
-	const handleReject = () => {
+	  };
+	  
+	  const handleReject = async () => {
 		if (selectedPost != null) {
-			setSelectedPost({ ...selectedPost, status: PostStatus.REJECTED });
+		  setSelectedPost({ ...selectedPost, postStatus: PostStatus.REJECTED });
+		  await doPut(selectedPost.postStatus, selectedPost.id);
+		  setSelectedPost(null);
 		}
-	};
+	  };
+	  
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -32,7 +37,7 @@ const ValidatePost: React.FC = () => {
 		};
 
 		void fetchData();
-	}, []); // Se llama una vez cuando el componente se monta
+	}, []); // [] = Called once when the component is mounted
 
 	const handlePostClick = (post: Post) => {
 		setSelectedPost(post);
@@ -48,13 +53,13 @@ const ValidatePost: React.FC = () => {
 					}}
 				>
 					<ul>
-						{post.pictures[0] !== '' && (
+						{post.pictures[0].picture !== null && (
 							<li>
-								<img src={post.pictures[0]} />
+								<img src={post.pictures[0].picture} />
 							</li>
 						)}
 					</ul>
-					<p>Usuario: {post.user.name}</p>
+					{/* <p>Usuario: {post.user.name}</p> */}
 				</div>
 			))}
 			<PostDetail

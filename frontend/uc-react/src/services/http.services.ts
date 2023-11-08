@@ -13,6 +13,14 @@ export const doGet = async <R>(path : string) => {
     
 };
 
+export const doPut = async <I, R>(payload: I, path: string) => {
+    const response: AxiosResponse<R, I> = await apitInstance.put(path, payload);
+    return response.data;
+};
+
+
+
+
 
 export type OkResponse = {
 	status: string;
